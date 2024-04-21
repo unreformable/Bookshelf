@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logowanie</title>
+</head>
+<body>
+    <center>
+        <h1>
+            Logowanie
+        </h1>
+    <form>
+        <label for="login">Login:</label><br>
+        <input type="text" id="login" name="login"><br>
+        <label for="password">Hasło:</label><br>
+        <input type="password" id="password" name="password"><br><br>
+        <input type="submit" value="Zaloguj się" asp-area="" asp-controller="Home" asp-action="Index"><br><br>
+        <input type="submit" value="Zarejestruj się" asp-area="" asp-controller="Home" asp-action="Register">
+    </form>
+    </center>
+</body>
+</html>

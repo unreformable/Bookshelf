@@ -1,0 +1,29 @@
+﻿@model Bookshelf.Models.User
+@{
+    ViewData["Title"] = "Register";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rejestracja</title>
+</head>
+<body>
+    <center>
+        <h1>
+            Rejestracja
+        </h1>
+    <form action="/home/registeruser" method="post">
+        <label>Login:</label><br>
+        <input type="text" asp-for="Login"><br>
+
+        <label>Hasło:</label><br>
+        <input type="text" asp-for="Password"><br><br>
+
+        <input type="submit" class="btn btn-primary" value="Zarejestruj się"><br><br>
+        <input type="submit" class="btn btn-primary" value="Mam już konto" asp-area="" asp-controller="Home" asp-action="Login">
+    </form>
+    </center>
+</body>
+</html>
