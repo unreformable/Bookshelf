@@ -23,11 +23,15 @@ namespace Bookshelf.Controllers
             return View();
         }
 
-        public IActionResult Login(/*LoginViewModel model*/)
+        public IActionResult Login()
         {
             return View();
+        }
+
+        public IActionResult TryLogin(/*LoginViewModel model*/)
+        {
             // Authenticate user
-            if(true/* authentication successful */)
+            if (true/* authentication successful */)
             {
                 // Redirect to specific page
                 return RedirectToAction("Index", "Account"); // Redirect to Account/Index
@@ -43,10 +47,18 @@ namespace Bookshelf.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult TryRegister()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            // Try register user
+            if (true/* registeration successful */)
+            {
+                // Redirect to specific page
+                return RedirectToAction("SuccessfullRegister", "Home");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Register"); // Refresh login page
+            }
         }
 
         public IActionResult SuccessfullRegister(User user)
@@ -59,6 +71,12 @@ namespace Bookshelf.Controllers
                 db.SaveChanges();
             }
             return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
