@@ -41,13 +41,12 @@
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Login}/{id?}");
 
                 // Add a route for the post-login controller
                 endpoints.MapControllerRoute(
                     name: "account",
-                    pattern: "Account/{action=Index}/{id?}",
-                    defaults: new { controller = "Account" });
+                    pattern: "{controller=Account}/{action=Index}/{id?}");
             });
         }
     }
