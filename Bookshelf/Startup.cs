@@ -40,8 +40,8 @@
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Login}/{id?}");
+                    name: "home",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
 
                 // Add a route for the post-login controller
                 endpoints.MapControllerRoute(

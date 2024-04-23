@@ -23,9 +23,19 @@ namespace Bookshelf.Controllers
             return View();
         }
 
-        public IActionResult Login()
+        public IActionResult Login(/*LoginViewModel model*/)
         {
             return View();
+            // Authenticate user
+            if(true/* authentication successful */)
+            {
+                // Redirect to specific page
+                return RedirectToAction("Index", "Account"); // Redirect to Account/Index
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home"); // Refresh login page
+            }
         }
 
         public IActionResult Register()
@@ -43,6 +53,8 @@ namespace Bookshelf.Controllers
         {
             using (var db = new Bookshelfcontext())
             {
+                user.CreateDate = DateTime.Now;
+
                 db.Add(user);
                 db.SaveChanges();
             }
