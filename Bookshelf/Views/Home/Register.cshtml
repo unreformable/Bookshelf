@@ -14,7 +14,7 @@
         <h1>
             Rejestracja
         </h1>
-    <form action="/home/successfullregister" method="post">
+    <form action="/home/tryregister" method="post">
         <label>Imię:</label><br>
         <input type="text" asp-for="Name"><br>
 
@@ -30,7 +30,7 @@
         <label>Hasło:</label><br>
         <input type="text" asp-for="Password"><br><br>
 
-        <input type="submit" value="Zarejestruj się" asp-area="" asp-controller="Home" asp-action="TryRegister"><br><br>
+        <input type="submit" value="Zarejestruj się"><br><br>
         <input type="submit" value="Mam już konto" asp-area="" asp-controller="Home" asp-action="Login"><br><br>
     </form>
     </center>

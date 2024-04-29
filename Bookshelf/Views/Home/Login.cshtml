@@ -13,12 +13,14 @@
         <h1>
             Logowanie
         </h1>
-    <form>
+    <form action="/Home/TryLogin" method="post">
         <label for="login">Login:</label><br>
-        <input type="text" id="login" name="login"><br>
+        <input type="text" name="Login"><br>
+
         <label for="password">Hasło:</label><br>
-        <input type="password" id="password" name="password"><br><br>
-        <input type="submit" value="Zaloguj się" asp-area="" asp-controller="Home" asp-action="TryLogin"><br><br>
+        <input type="password" name="Password"><br><br>
+
+        <input type="submit" value="Zaloguj się"><br><br>
         <input type="submit" value="Zarejestruj się" asp-area="" asp-controller="Home" asp-action="Register">
     </form>
     </center>
