@@ -1,5 +1,10 @@
 ﻿@{
     ViewData["Title"] = "Profile";
-}
 
-<p>Profile here.</p>
+    User user = Global.loggedUser;
+
+    <p>Your name: @user.Name</p>
+    <p>Your surname: @user.Surname</p>
+    <p>Your login: @user.Login</p>
+    <p>Your email: @user.Email </p>
+}

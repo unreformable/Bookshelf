@@ -40,8 +40,7 @@ namespace Bookshelf.Controllers
         {
             using (var db = new Bookshelfcontext())
             {
-                List<User> users = new List<User>();
-                users = db.Users.Where(u => u.Login.Contains(Login) && u.Password.Contains(Password)).ToList();
+                List<User> users = db.Users.Where(u => u.Login.Contains(Login) && u.Password.Contains(Password)).ToList();
 
                 if(!users.Any()) // user exists so we can login
                 {
@@ -49,6 +48,7 @@ namespace Bookshelf.Controllers
                 }
 
                 Global.loggedIn = true;
+                Global.loggedUser = db.Users.Where(u => u.Login.Contains(Login) && u.Password.Contains(Password)).First();
                 return View("Index");
             }
         }
