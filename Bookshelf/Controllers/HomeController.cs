@@ -43,14 +43,13 @@ namespace Bookshelf.Controllers
                 List<User> users = new List<User>();
                 users = db.Users.Where(u => u.Login.Contains(Login) && u.Password.Contains(Password)).ToList();
 
-                if (users.Any()) // user exists so we can login
-                {
-                    return View("Index");
-                }
-                else
+                if(!users.Any()) // user exists so we can login
                 {
                     return View("Login");
                 }
+
+                Global.loggedIn = true;
+                return View("Index");
             }
         }
         //Dodaje u¿ytkownika do bazy danych i zwraca ekran udanej rejestracji.

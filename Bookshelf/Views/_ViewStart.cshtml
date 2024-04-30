@@ -1,12 +1,11 @@
 ﻿@{
-    Layout = "_HomeLayout";
-}
-
-@*if (ViewContext.ViewBag.IsAdmin)
+    if (Global.loggedIn)
     {
         Layout = "_AccountLayout";
     }
     else
     {
         Layout = "_HomeLayout";
-    }*@
+    }
+}
+
