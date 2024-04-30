@@ -4,6 +4,9 @@ using static System.Reflection.Metadata.BlobBuilder;
 
 namespace Bookshelf.Models
 {
+    /// <summary>
+    /// Object that allows for interaction with database.
+    /// </summary>
     public class Bookshelfcontext: DbContext
     {
         public DbSet<Author> Authors { get; set; }
@@ -12,6 +15,9 @@ namespace Bookshelf.Models
         public DbSet<User> Users { get; set; }
         public DbSet<UserBook> UserBooks { get; set; }
 
+        /// <summary>
+        /// Configure connection with database. Data is saved to file.
+        /// </summary>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var connectionStringBuilder = new SqliteConnectionStringBuilder { DataSource = "D:\\bookshelf.db" };
@@ -20,15 +26,5 @@ namespace Bookshelf.Models
 
             optionsBuilder.UseSqlite(connection);
         }
-
-        // INFO: Zakomentowane, bo tworzy tabele z każdą komendą "Update-Database", przez co jest błąd o tym, że tabele już istnieją
-        /*protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Author>().ToTable("Author");
-            modelBuilder.Entity<AuthorBook>().ToTable("AuthorBook");
-            modelBuilder.Entity<Book>().ToTable("Book");
-            modelBuilder.Entity<User>().ToTable("User");
-            modelBuilder.Entity<UserBook>().ToTable("UserBook");
-        }*/
     }
 }

@@ -17,13 +17,25 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Bookshelf
 {
+    /// <summary>
+    /// Entry point of whole program.
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// Executes when running program.
+        /// </summary>
+        /// <param name="args">Command line arguments.</param>
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
         }
 
+        /// <summary>
+        /// Makes host builder.
+        /// </summary>
+        /// <param name="args">Command line arguments.</param>
+        /// <returns>Host builder interface.</returns>
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
@@ -32,28 +44,3 @@ namespace Bookshelf
                 });
     }
 }
-
-/*var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-builder.Services.AddControllersWithViews();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
-}
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Login}/{id?}");
-
-app.Run();
-*/

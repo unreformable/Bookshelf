@@ -7,6 +7,9 @@ using System.Diagnostics;
 
 namespace Bookshelf.Controllers
 {
+    /// <summary>
+    /// Controlls user interactions after loggin in.
+    /// </summary>
     public class AccountController : Controller
     {
         private readonly ILogger<AccountController> _logger;

@@ -4,6 +4,9 @@ using Google.Apis.Services;
 
 namespace Bookshelf
 {
+    /// <summary>
+    /// Allows for interaction with Google Books API
+    /// </summary>
     public class GoogleBooksAPI
     {
         static private string apiKey = "AIzaSyCrOKlzeWwLvVhCuxr7ldmaHUxNaypsoyI";
@@ -13,11 +16,13 @@ namespace Bookshelf
                 ApplicationName = "Bookshelf"
             });
 
-        public class BookSearchInfo
-        {
-            public string? Title { get; set; }
-        }
 
+        /// <summary>
+        /// Search for given book name in Google Books API.
+        /// </summary>
+        /// <param name="name">Name of book.</param>
+        /// <param name="maxResults">Maximum result count returned.</param>
+        /// <returns>List of Google Books API volumes.</returns>
         public static System.Collections.Generic.IList<Volume>? SearchBooks(string name, long maxResults = 5)
         {
             try
@@ -35,9 +40,9 @@ namespace Bookshelf
                 return response.Items;
 
                 // RETURN VALUE USAGE EXAMPLES:
-                // - item.VolumeInfo.Title
-                // - item.VolumeInfo.Authors
-                // - item.VolumeInfo.Publishe
+                // - volume.VolumeInfo.Title
+                // - volume.VolumeInfo.Authors
+                // - volume.VolumeInfo.Publishe
             }
             catch (Exception ex)
             {
@@ -45,44 +50,6 @@ namespace Bookshelf
             }
 
             return null;
-        }
-        
-        public static void TestGoogleBooksApi()
-        {
-            try
-            {
-                // Call the API to search for books
-                var listRequest = service.Volumes.List("flowers");
-                listRequest.MaxResults = 5; // Limit to 5 results
-                var response = listRequest.Execute();
-
-                // Process the response
-                if (response != null && response.Items != null)
-                {
-                    foreach (var item in response.Items)
-                    {
-                        Console.WriteLine("Title: " + item.VolumeInfo.Title);
-                        Console.Write("Authors: ");
-                        if (item.VolumeInfo.Authors != null)
-                        {
-                            Console.Write(string.Join(", ", item.VolumeInfo.Authors));
-                        }
-                        Console.WriteLine();
-                        Console.WriteLine("Publisher: " + item.VolumeInfo.Publisher);
-                        Console.WriteLine();
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("No results found.");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("An error occurred: " + ex.Message);
-            }
-
-            Console.ReadLine();
         }
     }
 }
