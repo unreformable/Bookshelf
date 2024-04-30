@@ -34,8 +34,8 @@ namespace Bookshelf.Controllers
         {
             return View();
         }
+
         //Sprawdza, czy istnieje u¿ytkownik o podanym loginie i haœle, jeœli tak: zwraca stronê g³ówn¹, jeœli nie: zwraca ekran logowania.
-        //Do dodania: Potrzebna jakaœ zmienna, która bêdzie trzymaæ dane o zalogowanym u¿ytkowniku przez resztê sesji.
         public IActionResult TryLogin(string Login, string Password)
         {
             using (var db = new Bookshelfcontext())
@@ -53,7 +53,6 @@ namespace Bookshelf.Controllers
             }
         }
         //Dodaje u¿ytkownika do bazy danych i zwraca ekran udanej rejestracji.
-        //Do dodania: Sprawdzanie, czy wszystkie pola s¹ wype³nione
         public IActionResult TryRegister(User user)
         {
             using (var db = new Bookshelfcontext())
