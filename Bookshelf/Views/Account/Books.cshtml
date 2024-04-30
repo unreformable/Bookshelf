@@ -13,41 +13,43 @@
         <h1>
             Książki
         </h1>
-        <form action="/home/search" method="post">
-            <label>Nazwa:</label><br>
-            <input type="text" name=""><br><br>
-
+        <form action="/account/searchbook" method="post">
+            <label>Podaj tytuł książki:</label><br>
+            <input type="text" name="title"><br><br>
             <input type="submit" value="Wyszukaj"><br><br>
         </form>
-
+        @if (Global.foundBooks.Any())
+        {
         <div class="container">
-             <!--if(API cokowliek znalazło) a niżej trzeba podać to co api zwróci-->
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Tytuł</th>
-                        <th scope="col">Autor</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!--foreach (var book in books) dla każdego wyniku dodaj -->
-                    {
-                        <tr>
-                            <td>1</td> <!--tutaj indeks wyniku (po prostu po kolei 1 2 3 4...)-->
-                            <td>Tytuł</td>
-                            <td>Autor</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-            <form action="/home/choose" method="post">
-                <label>Wybierz książkę numer:</label><br>
-            <input type="text" name=""><br><br>
 
-                <input type="submit" value="Wybierz"><br><br>
-            </form>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Tytuł</th>
+                            <th scope="col">Autor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var book in Global.foundBooks)
+                        {
+                        <tr>
+                            @{var index = Global.foundBooks.IndexOf(book) + 1;}
+                            <td>@index</td>
+                            <td>@book.VolumeInfo.Title</td>
+                            <td>@book.VolumeInfo.Authors.First()</td>
+                            <td>
+                                <form action="/account/choose" method="post">
+                                    <input type="hidden" name="selectedBookNumber" value="@index">
+                                    <input type="submit" value="Wybierz">
+                                </form>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+                </div>
+            }
     </center>
 </body>
 </html>
