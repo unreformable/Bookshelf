@@ -6,6 +6,9 @@ using System.Linq;
 
 namespace Bookshelf.Controllers
 {
+    /// <summary>
+    /// Controlls user interactions before loggin in.
+    /// </summary>
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -35,7 +38,12 @@ namespace Bookshelf.Controllers
             return View();
         }
 
-        //Sprawdza, czy istnieje u¿ytkownik o podanym loginie i haœle, jeœli tak: zwraca stronê g³ówn¹, jeœli nie: zwraca ekran logowania.
+        /// <summary>
+        /// Called when user wants to log in.
+        /// </summary>
+        /// <param name="Login">User's login.</param>
+        /// <param name="Password">User's password.</param>
+        /// <returns>Action.</returns>
         public IActionResult TryLogin(string Login, string Password)
         {
             using (var db = new Bookshelfcontext())
@@ -52,8 +60,13 @@ namespace Bookshelf.Controllers
                 return View("Index");
             }
         }
-        //Dodaje u¿ytkownika do bazy danych i zwraca ekran udanej rejestracji.
-        public IActionResult TryRegister(User user)
+
+        /// <summary>
+        /// Called when user wants to register.
+        /// </summary>
+        /// <param name="user">User object.</param>
+        /// <returns>Action.</returns>
+        public IActionResult TryRegister(User user) // TODO: Input name, surname, login, password, email instead of user object.
         {
             using (var db = new Bookshelfcontext())
             {
