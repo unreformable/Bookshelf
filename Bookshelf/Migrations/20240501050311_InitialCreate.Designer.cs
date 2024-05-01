@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bookshelf.Migrations
 {
     [DbContext(typeof(Bookshelfcontext))]
-    [Migration("20240423175427_Init")]
-    partial class Init
+    [Migration("20240501050311_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -58,6 +58,9 @@ namespace Bookshelf.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Author")
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("AuthorBookId")
                         .HasColumnType("INTEGER");
@@ -126,14 +129,16 @@ namespace Bookshelf.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Book_title")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("PagesRead")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Rating")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Review")
-                        .HasColumnType("varchar(2048)");
+                    b.Property<string>("User_Login")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 

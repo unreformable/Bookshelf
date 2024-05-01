@@ -20,7 +20,7 @@ namespace Bookshelf.Models
         /// </summary>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionStringBuilder = new SqliteConnectionStringBuilder { DataSource = "D:\\bookshelf.db" };
+            var connectionStringBuilder = new SqliteConnectionStringBuilder { DataSource = "..\\bookshelf.db" };
             var connectionString = connectionStringBuilder.ToString();
             var connection = new SqliteConnection(connectionString);
 

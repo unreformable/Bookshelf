@@ -40,6 +40,26 @@ namespace Bookshelf.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Called when user wants to change page.
+        /// </summary>
+        /// <param name="selectedBook">Title of a book user wants to change.</param>
+        /// <param name="selectedPageNumber">Number of page user wants to change to.</param>
+        /// <returns>Action.</returns>
+        public IActionResult Change_page(string selectedBook, int selectedPageNumber)
+        {
+            using (var db = new Bookshelfcontext())
+            {
+                var user = db.UserBooks.Where(u => u.User_Login == Global.loggedUser.Login && u.Book_title == selectedBook).FirstOrDefault();
+                user.PagesRead = selectedPageNumber;
+                db.SaveChanges();
+            }
+            return RedirectToAction("Bookshelf");
+        }
+        /// <summary>
+        /// Called when opening page Bookshelf. Searches for books added by user.
+        /// </summary>
+        /// <returns>Action.</returns>
         public IActionResult Bookshelf()
         {
             using (var db = new Bookshelfcontext())
@@ -48,7 +68,11 @@ namespace Bookshelf.Controllers
             }
             return View();
         }
-
+        /// <summary>
+        /// Called when user chooses book he wants to add to his Bookshelf.
+        /// </summary>
+        /// <param name="index">Index of a book user wants to add.</param>
+        /// <returns>Action.</returns>
         public IActionResult choose(int index)
         {
             using (var db = new Bookshelfcontext())
@@ -67,11 +91,18 @@ namespace Bookshelf.Controllers
             }
                 return View("Books");
         }
-
+        /// <summary>
+        /// Called when user wants to search for books.
+        /// </summary>
+        /// <param name="title">Title of a book user wants to add.</param>
+        /// <returns>Action.</returns>
         public IActionResult SearchBook(string title)
         {
             System.Collections.Generic.IList<Volume>? items = GoogleBooksAPI.SearchBooks(title);
-            Global.foundBooks = items; 
+            if (items != null)
+            {
+                Global.foundBooks = items;
+            }
             return View("Books");
         }
 

@@ -12,7 +12,7 @@
 <body>
     <center>
         <h1>
-            Książki
+            Twoja biblioteka
         </h1>
         @if (Global.books.Any())
         {
@@ -23,6 +23,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Tytuł</th>
                             <th scope="col">Przeczytane strony</th>
+                            <th scope="col">Zmień ilość przeczytanych stron</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,9 +35,10 @@
                             <td>@book.Book_title</td>
                             <td>@book.PagesRead</td>
                             <td>
-                                <form action="/account/choose" method="post">
-                                    <input type="hidden" name="selectedBookNumber" value="@index">
-                                    <input type="submit" value="Wybierz">
+                                <form action="/account/change_page" method="post">
+                                    <input type="hidden" name="selectedBook" value="@book.Book_title">
+                                    <input type="text" name="selectedPageNumber">
+                                    <input type="submit" value="Zmień">
                                 </form>
                             </td>
                         </tr>

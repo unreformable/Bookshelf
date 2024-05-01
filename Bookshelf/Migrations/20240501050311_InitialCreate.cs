@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Bookshelf.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,8 +30,8 @@ namespace Bookshelf.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     PagesRead = table.Column<int>(type: "INTEGER", nullable: false),
-                    Rating = table.Column<int>(type: "INTEGER", nullable: false),
-                    Review = table.Column<string>(type: "varchar(2048)", nullable: true)
+                    Book_title = table.Column<string>(type: "TEXT", nullable: false),
+                    User_Login = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -66,6 +66,7 @@ namespace Bookshelf.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Title = table.Column<string>(type: "varchar(255)", nullable: true),
                     Description = table.Column<string>(type: "varchar(2200)", nullable: true),
+                    Author = table.Column<string>(type: "TEXT", nullable: true),
                     Pages = table.Column<int>(type: "INTEGER", nullable: false),
                     ReleaseDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     AuthorBookId = table.Column<int>(type: "INTEGER", nullable: true),
