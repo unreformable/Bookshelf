@@ -12,7 +12,6 @@ namespace Bookshelf
         /// Signals whether user is logged in or not.
         /// </summary>
         public static bool loggedIn = false;
-        public static User loggedUser;
 
         /// <summary>
         /// Stores user data after loggin in.
@@ -23,5 +22,10 @@ namespace Bookshelf
         /// Stores data recieved from API
         /// </summary>
         public static IList<Volume> foundBooks = new List<Volume>();
+
+        /// <summary>
+        /// Stores data about books of the user
+        /// </summary>
+        public static List<UserBook> books = new List<UserBook>();
     }
 }

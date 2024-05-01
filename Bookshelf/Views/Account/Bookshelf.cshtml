@@ -1,6 +1,6 @@
 ﻿@{
-    ViewData["Title"] = "Books";
-    int index = 0;
+    ViewData["Title"] = "Bookshelf";
+    var index = 0;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -14,37 +14,31 @@
         <h1>
             Książki
         </h1>
-        <form action="/account/searchbook" method="post">
-            <label>Podaj tytuł książki:</label><br>
-            <input type="text" name="title"><br><br>
-            <input type="submit" value="Wyszukaj"><br><br>
-        </form>
-        @if (Global.foundBooks.Any())
+        @if (Global.books.Any())
         {
         <div class="container">
-
                 <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Tytuł</th>
-                            <th scope="col">Autor</th>
+                            <th scope="col">Przeczytane strony</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach(var book in Global.foundBooks)
+                        @foreach(var book in Global.books)
                         {
                         <tr>
+                            @{index = index + 1;}
                             <td>@index</td>
-                            <td>@book.VolumeInfo.Title</td>
-                            <td>@book.VolumeInfo.Authors.First()</td>
+                            <td>@book.Book_title</td>
+                            <td>@book.PagesRead</td>
                             <td>
                                 <form action="/account/choose" method="post">
-                                    <input type="hidden" name="index" value="@index">
+                                    <input type="hidden" name="selectedBookNumber" value="@index">
                                     <input type="submit" value="Wybierz">
                                 </form>
                             </td>
-                                @{index = index + 1;}
                         </tr>
                         }
                     </tbody>
